@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Third Exploration</title>
+        <!-- we have to specify the character set and the responsive viewport -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <script 
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <script 
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <style>
+            #progress{
+                width: 50%;
+                margin: auto 0px;
+            }
+        </style>
+        
+    </head>
+    <body>
+        
+        <div class="jumbotron container-fluid" id="tron">
+            <h2>Third Exploration</h2>
+            <p>My third exploration is going to be taking a deeper look into some of Bootstrap's features.  I discussed many of their features in the last exploration, which you can find <a href="http://ec2-34-207-153-181.compute-1.amazonaws.com/secondExploration/#">here</a>.  Please continue scolling down the page and enjoy!</p>
+        </div>
+        
+        <div class="container">
+          <h2>Filterable Table</h2>
+          <p>Bootstrap has great built in tables that format and look amazing. They also have built in JavaScript that can search the table using whatever you search in the input field.  It is very smooth and reactive.  Give it a try!</p>  
+          <input class="form-control" id="myInput" type="text" placeholder="Search..">
+          <br>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody id="myTable">
+              <tr>
+                <td>Darrell</td>
+                <td>Martin</td>
+                <td>fake@example.com</td>
+              </tr>
+              <tr>
+                <td>Mary</td>
+                <td>Moe</td>
+                <td>mary@mail.com</td>
+              </tr>
+              <tr>
+                <td>Nick</td>
+                <td>Wergeles</td>
+                <td>nickwerg@greatstuff.com</td>
+              </tr>
+              <tr>
+                <td>Hello</td>
+                <td>World</td>
+                <td>hi@test.com</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="container">
+          <h3>Tooltip Example</h3>
+          <p>Tooltips are another great feature of Bootstrap.  They let the user know exactly what you want them to know when they hover over something.  You can also control the position of the tooltip when something gets hovered over.  They are very sleek and give a great feel for the users when navigating your site.</p>
+          <ul class="list-inline">
+            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Tooltip example!">Top position</a></li>
+            <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Tooltip example!">Bottom position</a></li>
+            <li><a href="#" data-toggle="tooltip" data-placement="left" title="Tooltip example!">Left position</a></li>
+            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Tooltip example!">Right position</a></li>
+          </ul>
+        </div>
+        <br>
+        <hr>
+        <br>
+        
+        <div class="container">
+            <h3>Progress Bar Example</h3>
+            <p>Bootstrap also has built in progress bars that look amazing!  With a little bit of simple JavaScript, they can become very dynamic and be used as a great part of your site when using any Ajax calls to give the user a visual of something loading.  </p>
+            <div class="progress" id="progress">
+              <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" id="myBar" aria-valuemin="0" aria-valuemax="100" style="width:10%;">10%
+              </div>
+            </div>
+            <br>
+            <button onclick="move()">Click to load bar</button>
+        </div>
+        <br>
+        <hr>
+        <br>
+
+        <script>
+            $(document).ready(function(){
+              $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+              });
+            });
+            
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();   
+            });
+            
+            function move() {
+              var elem = document.getElementById("myBar");   
+              var width = 10;
+              var id = setInterval(frame, 10);
+              function frame() {
+                if (width >= 100) {
+                  clearInterval(id);
+                } else {
+                  width++; 
+                  elem.style.width = width + '%'; 
+                  elem.innerHTML = width * 1  + '%';
+                }
+              }
+            }
+        </script>
+        
+    </body>
+</html>
